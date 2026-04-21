@@ -130,7 +130,6 @@ npx vercel --prod
 | Channel | Details |
 |---|---|
 | 📧 Email | [rakeshvadnala@gmail.com](mailto:rakeshvadnala@gmail.com) |
-| 📞 Phone | +971-52-317-6892 |
 | 💼 LinkedIn | [linkedin.com/in/rakeshvadnala](https://www.linkedin.com/in/rakeshvadnala/) |
 | 📍 Location | Dubai, United Arab Emirates |
 
