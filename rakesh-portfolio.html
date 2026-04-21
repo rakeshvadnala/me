@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rakesh Vadnala — IAM Specialist</title>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&family=Alfa+Slab+One&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #f5f0dc;
+    --dark: #1a1a1a;
+    --red: #c0392b;
+    --green: #1a6b3c;
+    --amber: #d4920a;
+    --purple: #7b2d8b;
+    --blue: #2563a8;
+    --dark-red: #8b1a1a;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--cream);
+    color: var(--dark);
+    font-family: 'Libre Baskerville', Georgia, serif;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none; z-index: 999; opacity: 0.5;
+  }
+
+  /* ── NAV ── */
+  nav {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1.2rem 3rem;
+    border-bottom: 3px solid var(--dark);
+    position: sticky; top: 0;
+    background: var(--cream); z-index: 100;
+  }
+  .nav-logo {
+    font-family: 'Alfa Slab One', serif; font-size: 1.2rem;
+    letter-spacing: 0.05em; color: var(--dark); text-decoration: none;
+  }
+  .nav-logo span { color: var(--red); }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    font-family: 'Oswald', sans-serif; font-size: 0.82rem;
+    letter-spacing: 0.15em; text-transform: uppercase;
+    text-decoration: none; color: var(--dark); transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--red); }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 94vh; display: flex; flex-direction: column;
+    justify-content: center; padding: 5rem 3rem 3rem;
+    border-bottom: 3px solid var(--dark);
+    position: relative; overflow: hidden;
+  }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    font-family: 'Oswald', sans-serif; font-size: 0.78rem;
+    letter-spacing: 0.28em; text-transform: uppercase;
+    color: var(--red); margin-bottom: 1.8rem;
+    animation: fadeUp 0.6s ease both;
+  }
+  .hero-badge::before {
+    content: ''; width: 32px; height: 3px; background: var(--red);
+  }
+  .hero-name {
+    font-family: 'Alfa Slab One', serif;
+    font-size: clamp(4rem, 12vw, 11rem);
+    line-height: 0.88; text-transform: uppercase;
+    animation: fadeUp 0.7s 0.1s ease both;
+  }
+  .hero-name .line-1 { color: var(--green); display: block; }
+  .hero-name .line-2 { color: var(--amber); display: block; }
+
+  .hero-title {
+    font-family: 'Oswald', sans-serif;
+    font-size: clamp(1.1rem, 3vw, 2.2rem);
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--purple); margin-top: 1.2rem;
+    animation: fadeUp 0.7s 0.2s ease both;
+  }
+  .hero-sub {
+    font-family: 'Oswald', sans-serif; font-size: 0.85rem;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--blue); margin-top: 0.4rem;
+    animation: fadeUp 0.7s 0.25s ease both;
+  }
+  .hero-summary {
+    max-width: 580px; margin-top: 2rem; font-size: 1rem;
+    line-height: 1.8; color: #444;
+    animation: fadeUp 0.7s 0.3s ease both;
+  }
+  .hero-contacts {
+    display: flex; flex-wrap: wrap; gap: 1.2rem;
+    margin-top: 2.5rem; animation: fadeUp 0.7s 0.35s ease both;
+  }
+  .contact-chip {
+    display: flex; align-items: center; gap: 0.5rem;
+    font-family: 'Oswald', sans-serif; font-size: 0.78rem;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    text-decoration: none; color: var(--dark);
+    border: 2px solid var(--dark); padding: 0.5rem 1rem;
+    transition: all 0.2s;
+  }
+  .contact-chip:hover { background: var(--dark); color: var(--cream); }
+
+  .hero-cta {
+    display: inline-flex; gap: 1rem;
+    margin-top: 2.2rem; animation: fadeUp 0.7s 0.4s ease both;
+  }
+  .btn {
+    font-family: 'Oswald', sans-serif; font-size: 0.88rem;
+    letter-spacing: 0.15em; text-transform: uppercase;
+    padding: 0.9rem 2.2rem; text-decoration: none;
+    border: 3px solid var(--dark); transition: all 0.2s; font-weight: 700;
+  }
+  .btn-primary { background: var(--dark); color: var(--cream); }
+  .btn-primary:hover { background: var(--red); border-color: var(--red); }
+  .btn-secondary { background: transparent; color: var(--dark); }
+  .btn-secondary:hover { background: var(--amber); border-color: var(--amber); }
+
+  .hero-deco {
+    position: absolute; right: -0.02em; bottom: -0.18em;
+    font-family: 'Alfa Slab One', serif;
+    font-size: clamp(10rem, 28vw, 26rem);
+    line-height: 1; color: transparent;
+    -webkit-text-stroke: 3px rgba(0,0,0,0.07);
+    pointer-events: none; user-select: none;
+    animation: fadeIn 1s 0.5s ease both;
+  }
+
+  /* ── SECTIONS ── */
+  .section-label {
+    font-family: 'Oswald', sans-serif; font-size: 0.75rem;
+    letter-spacing: 0.3em; text-transform: uppercase;
+    color: var(--red); margin-bottom: 0.5rem;
+  }
+  .section-title {
+    font-family: 'Alfa Slab One', serif;
+    font-size: clamp(2.2rem, 5.5vw, 4.5rem);
+    text-transform: uppercase; line-height: 0.95;
+  }
+
+  /* ── ABOUT ── */
+  #about {
+    display: grid; grid-template-columns: 1fr 1.4fr;
+    gap: 4rem; padding: 6rem 3rem;
+    border-bottom: 3px solid var(--dark); align-items: start;
+  }
+  .about-left .section-title { color: var(--blue); }
+  .about-left .about-location {
+    margin-top: 1.2rem;
+    font-family: 'Oswald', sans-serif; font-size: 0.82rem;
+    letter-spacing: 0.15em; text-transform: uppercase; color: #888;
+  }
+  .about-text { font-size: 0.97rem; line-height: 1.85; color: #333; }
+  .about-text p + p { margin-top: 1.1rem; }
+  .about-highlights {
+    margin-top: 2rem; display: flex; flex-direction: column; gap: 0.7rem;
+  }
+  .highlight-item {
+    display: flex; align-items: flex-start; gap: 0.8rem;
+    font-size: 0.9rem; line-height: 1.5; color: #444;
+  }
+  .highlight-item::before {
+    content: '→'; font-family: 'Oswald', sans-serif;
+    color: var(--red); flex-shrink: 0; font-weight: 700;
+  }
+  .about-stats {
+    margin-top: 2.5rem; display: grid;
+    grid-template-columns: 1fr 1fr; gap: 1.5rem;
+  }
+  .stat { border-left: 4px solid var(--amber); padding-left: 1rem; }
+  .stat-num {
+    font-family: 'Alfa Slab One', serif; font-size: 2.5rem;
+    color: var(--dark); line-height: 1;
+  }
+  .stat-label {
+    font-family: 'Oswald', sans-serif; font-size: 0.72rem;
+    letter-spacing: 0.15em; text-transform: uppercase; color: #666; margin-top: 0.2rem;
+  }
+
+  /* ── EXPERIENCE ── */
+  #experience { padding: 6rem 3rem; border-bottom: 3px solid var(--dark); }
+  #experience .section-title { color: var(--green); margin-bottom: 3.5rem; }
+  .timeline { display: flex; flex-direction: column; gap: 0; }
+  .timeline-item {
+    display: grid; grid-template-columns: 200px 1fr;
+    gap: 2.5rem; padding: 2.5rem 0;
+    border-bottom: 2px solid rgba(0,0,0,0.1);
+    position: relative;
+  }
+  .timeline-item:last-child { border-bottom: none; }
+  .timeline-left { position: relative; }
+  .timeline-period {
+    font-family: 'Oswald', sans-serif; font-size: 0.78rem;
+    letter-spacing: 0.12em; text-transform: uppercase; color: #999;
+    line-height: 1.4;
+  }
+  .timeline-company {
+    font-family: 'Alfa Slab One', serif; font-size: 1.1rem;
+    color: var(--dark); margin-top: 0.5rem; line-height: 1.2;
+  }
+  .timeline-badge {
+    display: inline-block; margin-top: 0.6rem;
+    font-family: 'Oswald', sans-serif; font-size: 0.65rem;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    background: var(--dark); color: var(--cream);
+    padding: 0.2rem 0.6rem;
+  }
+  .timeline-role {
+    font-family: 'Alfa Slab One', serif; font-size: 1.6rem;
+    text-transform: uppercase; line-height: 1.1;
+    margin-bottom: 1rem;
+  }
+  .timeline-desc { font-size: 0.92rem; line-height: 1.8; color: #444; margin-bottom: 1.2rem; }
+  .timeline-skills { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+  .skill-tag {
+    font-family: 'Oswald', sans-serif; font-size: 0.65rem;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    border: 2px solid var(--dark); padding: 0.2rem 0.6rem;
+    transition: all 0.2s;
+  }
+  .skill-tag:hover { background: var(--dark); color: var(--cream); }
+
+  /* color per role */
+  .role-current .timeline-role { color: var(--green); }
+  .role-intern .timeline-role { color: var(--amber); }
+  .role-ops .timeline-role { color: var(--blue); }
+
+  /* ── EXPERTISE ── */
+  #expertise { padding: 6rem 3rem; border-bottom: 3px solid var(--dark); }
+  #expertise .section-title { color: var(--purple); margin-bottom: 3.5rem; }
+  .expertise-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 0; }
+  .expertise-card {
+    border: 3px solid var(--dark); margin: -1.5px;
+    padding: 2.2rem; position: relative; overflow: hidden; cursor: default;
+    transition: transform 0.25s;
+  }
+  .expertise-card::before {
+    content: ''; position: absolute; inset: 0;
+    background: var(--card-color, var(--amber));
+    transform: scaleY(0); transform-origin: bottom;
+    transition: transform 0.3s ease; z-index: 0;
+  }
+  .expertise-card:hover::before { transform: scaleY(1); }
+  .expertise-card:hover .exp-icon,
+  .expertise-card:hover .exp-title,
+  .expertise-card:hover .exp-items { color: var(--cream); }
+  .expertise-card > * { position: relative; z-index: 1; transition: color 0.2s; }
+  .exp-icon { font-size: 2.2rem; margin-bottom: 0.8rem; }
+  .exp-title {
+    font-family: 'Alfa Slab One', serif; font-size: 1.2rem;
+    text-transform: uppercase; margin-bottom: 0.8rem;
+  }
+  .exp-items { font-size: 0.85rem; line-height: 2; color: #555; }
+
+  /* ── SKILLS ── */
+  #skills { padding: 6rem 3rem; border-bottom: 3px solid var(--dark); }
+  #skills .section-title { color: var(--dark-red); margin-bottom: 3.5rem; }
+  .skills-list { display: flex; flex-direction: column; gap: 0; }
+  .skill-row {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1.3rem 0; border-bottom: 2px solid rgba(0,0,0,0.1);
+    position: relative; overflow: hidden;
+  }
+  .skill-row::after {
+    content: ''; position: absolute; left: 0; bottom: 0;
+    height: 3px; width: var(--w, 0%);
+    background: var(--clr, var(--amber)); transition: width 1.2s ease;
+  }
+  .skill-name {
+    font-family: 'Oswald', sans-serif; font-size: clamp(1.2rem, 3vw, 2rem);
+    letter-spacing: 0.05em; text-transform: uppercase;
+  }
+  .skill-pct { font-family: 'Alfa Slab One', serif; font-size: 1.1rem; color: #aaa; }
+
+  /* ── TECH STACK ── */
+  #techstack { padding: 6rem 3rem; border-bottom: 3px solid var(--dark); }
+  #techstack .section-title { color: var(--blue); margin-bottom: 3rem; }
+  .tech-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 2rem; }
+  .tech-group h3 {
+    font-family: 'Oswald', sans-serif; font-size: 0.75rem;
+    letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--red); border-bottom: 2px solid var(--red);
+    padding-bottom: 0.4rem; margin-bottom: 1rem;
+  }
+  .tech-items { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+  .tech-item {
+    font-family: 'Oswald', sans-serif; font-size: 0.72rem;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    background: var(--dark); color: var(--cream);
+    padding: 0.3rem 0.7rem; transition: background 0.2s;
+  }
+  .tech-item:hover { background: var(--red); }
+
+  /* ── ACHIEVEMENTS ── */
+  #achievements { padding: 6rem 3rem; border-bottom: 3px solid var(--dark); }
+  #achievements .section-title { color: var(--amber); margin-bottom: 3rem; }
+  .achieve-list { display: flex; flex-direction: column; gap: 1.2rem; }
+  .achieve-item {
+    display: flex; gap: 1.5rem; align-items: flex-start;
+    padding: 1.5rem; border: 3px solid var(--dark);
+    transition: all 0.2s;
+  }
+  .achieve-item:hover { background: var(--dark); color: var(--cream); }
+  .achieve-num {
+    font-family: 'Alfa Slab One', serif; font-size: 2.5rem;
+    color: var(--amber); line-height: 1; flex-shrink: 0;
+    transition: color 0.2s;
+  }
+  .achieve-item:hover .achieve-num { color: var(--amber); }
+  .achieve-text { font-size: 0.95rem; line-height: 1.7; padding-top: 0.3rem; }
+
+  /* ── CONTACT ── */
+  #contact {
+    padding: 7rem 3rem; text-align: center;
+    position: relative; overflow: hidden;
+  }
+  #contact .section-title { color: var(--dark-red); font-size: clamp(2.5rem, 8vw, 7rem); margin-bottom: 0.8rem; }
+  .contact-sub {
+    font-size: 1rem; color: #555; max-width: 440px;
+    margin: 0 auto 3rem; line-height: 1.7;
+  }
+  .contact-links { display: flex; justify-content: center; flex-wrap: wrap; gap: 1rem; }
+  .contact-link {
+    font-family: 'Oswald', sans-serif; font-size: 0.82rem;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    text-decoration: none; color: var(--dark);
+    border: 3px solid var(--dark); padding: 0.8rem 1.8rem;
+    transition: all 0.2s;
+  }
+  .contact-link:nth-child(1):hover { background: var(--green); border-color: var(--green); color: white; }
+  .contact-link:nth-child(2):hover { background: var(--blue); border-color: var(--blue); color: white; }
+  .contact-link:nth-child(3):hover { background: var(--purple); border-color: var(--purple); color: white; }
+
+  /* ── FOOTER ── */
+  footer {
+    border-top: 3px solid var(--dark); padding: 1.5rem 3rem;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  footer span {
+    font-family: 'Oswald', sans-serif; font-size: 0.72rem;
+    letter-spacing: 0.15em; text-transform: uppercase; color: #888;
+  }
+  .footer-mark { font-family: 'Alfa Slab One', serif; font-size: 1rem; color: var(--red) !important; }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(28px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; } to { opacity: 1; }
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    .hero, #about, #experience, #expertise, #skills, #techstack, #achievements, #contact { padding: 4rem 1.5rem; }
+    #about { grid-template-columns: 1fr; }
+    .timeline-item { grid-template-columns: 1fr; gap: 0.8rem; }
+    footer { flex-direction: column; gap: 0.4rem; text-align: center; padding: 1.2rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#"><span>IAM</span> · Rakesh Vadnala</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#expertise">Expertise</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#techstack">Tech Stack</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <p class="hero-badge">Identity &amp; Access Management · Dubai, UAE</p>
+  <h1 class="hero-name">
+    <span class="line-1">RAKESH</span>
+    <span class="line-2">VADNALA</span>
+  </h1>
+  <p class="hero-title">IAM Technical Consultant</p>
+  <p class="hero-sub">SailPoint IdentityIQ Specialist · RNS Technology Services</p>
+  <p class="hero-summary">5 years of expertise in end-to-end Identity and Access Management — specializing in SailPoint IdentityIQ implementation, application onboarding, workflow development, and lifecycle governance across complex enterprise environments.</p>
+  <div class="hero-contacts">
+    <a href="tel:+971523176892" class="contact-chip">📞 +971-52-317-6892</a>
+    <a href="mailto:rakeshvadnala@gmail.com" class="contact-chip">✉ rakeshvadnala@gmail.com</a>
+    <a href="https://www.linkedin.com/in/rakeshvadnala/" target="_blank" class="contact-chip">in LinkedIn</a>
+  </div>
+  <div class="hero-cta">
+    <a href="#experience" class="btn btn-primary">View Experience</a>
+    <a href="#contact" class="btn btn-secondary">Get In Touch</a>
+  </div>
+  <div class="hero-deco" aria-hidden="true">IAM</div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-left">
+    <p class="section-label">Who I Am</p>
+    <h2 class="section-title">Almost<br>There.</h2>
+    <p class="about-location">📍 Dubai, United Arab Emirates</p>
+    <div class="about-stats" style="margin-top:2rem;">
+      <div class="stat"><div class="stat-num">5+</div><div class="stat-label">Years in IAM</div></div>
+      <div class="stat"><div class="stat-num">10+</div><div class="stat-label">App Connectors</div></div>
+      <div class="stat"><div class="stat-num">3</div><div class="stat-label">Environments</div></div>
+      <div class="stat"><div class="stat-num">100%</div><div class="stat-label">Delivery Focus</div></div>
+    </div>
+  </div>
+  <div class="about-right">
+    <div class="about-text">
+      <p>I'm an IAM Technical Consultant based in Dubai with deep specialization in SailPoint IdentityIQ. I bring hands-on experience across the full project lifecycle — from requirements analysis and environment setup through to custom workflow development, user training, and production support.</p>
+      <p>My work centres on building robust, scalable identity governance solutions that balance security with operational efficiency, ensuring organizations can manage user access with precision and confidence.</p>
+    </div>
+    <div class="about-highlights">
+      <div class="highlight-item">End-to-end SailPoint IIQ implementation across Dev, UAT, and Production environments</div>
+      <div class="highlight-item">Application onboarding across AD, LDAP, JDBC, Web Services, Salesforce, SharePoint &amp; more</div>
+      <div class="highlight-item">Custom workflow development for Joiner-Mover-Leaver and birthright provisioning</div>
+      <div class="highlight-item">SSO integration using Azure SAML and Active Directory Kerberos</div>
+      <div class="highlight-item">Result-oriented professional with strong customer focus and communication skills</div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <p class="section-label">Career History</p>
+  <h2 class="section-title">Experience</h2>
+
+  <div class="timeline">
+
+    <div class="timeline-item role-current">
+      <div class="timeline-left">
+        <p class="timeline-period">Sep 2022 – Present</p>
+        <p class="timeline-company">RNS Technology Services</p>
+        <span class="timeline-badge">Current</span>
+      </div>
+      <div class="timeline-right">
+        <h3 class="timeline-role">IAM Technical Consultant</h3>
+        <p class="timeline-desc">Strategic consulting and implementation of Identity and Access Management solutions. Responsible for gathering requirements, performing problem analysis, and ensuring high availability, performance, scalability, and security. Specializes in user provisioning, compliance, and workflow development, managing Joiner/Mover/Leaver scenarios end-to-end. Leads application onboarding, develops custom workflows, and delivers comprehensive documentation and end-user training for seamless adoption.</p>
+        <div class="timeline-skills">
+          <span class="skill-tag">SailPoint IIQ</span>
+          <span class="skill-tag">LCM</span>
+          <span class="skill-tag">Active Directory</span>
+          <span class="skill-tag">CyberArk</span>
+          <span class="skill-tag">SSO</span>
+          <span class="skill-tag">MFA</span>
+          <span class="skill-tag">Java</span>
+          <span class="skill-tag">BeanShell</span>
+          <span class="skill-tag">REST APIs</span>
+          <span class="skill-tag">Splunk</span>
+          <span class="skill-tag">PKI / TLS</span>
+          <span class="skill-tag">RBAC</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="timeline-item role-intern">
+      <div class="timeline-left">
+        <p class="timeline-period">Apr 2021 – Sep 2021</p>
+        <p class="timeline-company">RNS Technology Services</p>
+        <span class="timeline-badge">Internship</span>
+      </div>
+      <div class="timeline-right">
+        <h3 class="timeline-role">IAM Intern</h3>
+        <p class="timeline-desc">Trained in SailPoint IdentityIQ for Identity and Access Management with hands-on experience shadowing multiple projects. Built a strong technical foundation in IAM principles, connector configuration, and lifecycle management. Gained practical exposure to SSO, MFA, Active Directory, and enterprise IAM tooling across real client environments.</p>
+        <div class="timeline-skills">
+          <span class="skill-tag">SailPoint IIQ</span>
+          <span class="skill-tag">IDM</span>
+          <span class="skill-tag">SSO</span>
+          <span class="skill-tag">Active Directory</span>
+          <span class="skill-tag">Linux</span>
+          <span class="skill-tag">MySQL</span>
+          <span class="skill-tag">CyberArk</span>
+          <span class="skill-tag">VM Configuration</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="timeline-item role-ops">
+      <div class="timeline-left">
+        <p class="timeline-period">Feb 2020 – Jul 2020</p>
+        <p class="timeline-company">Jugnoo Franchise</p>
+        <span class="timeline-badge">Prior Role</span>
+      </div>
+      <div class="timeline-right">
+        <h3 class="timeline-role">Operations Executive</h3>
+        <p class="timeline-desc">Communicated with senior management to strategize efficient operations and developed long-term plans to achieve organizational goals. Managed commercial operations, monitored internal and external service providers, and maintained performance metrics across the business.</p>
+        <div class="timeline-skills">
+          <span class="skill-tag">Operations Management</span>
+          <span class="skill-tag">Business Planning</span>
+          <span class="skill-tag">Multitasking</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- EXPERTISE -->
+<section id="expertise">
+  <p class="section-label">Core Competencies</p>
+  <h2 class="section-title">Expertise</h2>
+
+  <div class="expertise-grid">
+    <div class="expertise-card" style="--card-color: var(--green);">
+      <div class="exp-icon">🔐</div>
+      <h3 class="exp-title">SailPoint IIQ</h3>
+      <div class="exp-items">Implementation &amp; Configuration<br>Environment Setup (Dev/UAT/Prod)<br>OOTB Connector Config<br>Account &amp; Group Aggregation<br>Upgrade &amp; Patching</div>
+    </div>
+    <div class="expertise-card" style="--card-color: var(--amber);">
+      <div class="exp-icon">⚙️</div>
+      <h3 class="exp-title">Workflow Dev</h3>
+      <div class="exp-items">Birthright Provisioning<br>Event-Based Provisioning<br>JML (Joiner-Mover-Leaver)<br>Email-Based Approvals<br>Custom BeanShell Rules</div>
+    </div>
+    <div class="expertise-card" style="--card-color: var(--purple);">
+      <div class="exp-icon">🔗</div>
+      <h3 class="exp-title">App Onboarding</h3>
+      <div class="exp-items">AD · LDAP · JDBC<br>Web Services · Salesforce<br>SharePoint · MSSQL<br>Linux Direct · Cloud Gateway<br>Delimited Files · SIQ (FAM)</div>
+    </div>
+    <div class="expertise-card" style="--card-color: var(--blue);">
+      <div class="exp-icon">🛡️</div>
+      <h3 class="exp-title">Identity Governance</h3>
+      <div class="exp-items">RBAC Provisioning<br>Role &amp; Entitlement Config<br>Lifecycle Events<br>Workgroups &amp; Populations<br>Compliance &amp; Audit</div>
+    </div>
+    <div class="expertise-card" style="--card-color: var(--dark-red);">
+      <div class="exp-icon">🔑</div>
+      <h3 class="exp-title">Auth &amp; SSO</h3>
+      <div class="exp-items">Azure SAML SSO<br>Active Directory Kerberos<br>Multi-Factor Auth (MFA)<br>Desktop Password Reset<br>Password Interceptor</div>
+    </div>
+    <div class="expertise-card" style="--card-color: var(--red);">
+      <div class="exp-icon">📊</div>
+      <h3 class="exp-title">Monitoring &amp; Support</h3>
+      <div class="exp-items">Splunk SIEM Integration<br>SSL Certificate Resolution<br>DB Upgrade &amp; Backup<br>Production Support<br>Custom Reports</div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <p class="section-label">Proficiency</p>
+  <h2 class="section-title">Skills</h2>
+  <div class="skills-list" id="skillsList">
+    <div class="skill-row" data-w="95" data-clr="var(--green)">
+      <span class="skill-name">SailPoint IdentityIQ</span><span class="skill-pct">95%</span>
+    </div>
+    <div class="skill-row" data-w="90" data-clr="var(--amber)">
+      <span class="skill-name">Identity &amp; Access Management</span><span class="skill-pct">90%</span>
+    </div>
+    <div class="skill-row" data-w="85" data-clr="var(--purple)">
+      <span class="skill-name">Workflow &amp; Rules Development</span><span class="skill-pct">85%</span>
+    </div>
+    <div class="skill-row" data-w="88" data-clr="var(--blue)">
+      <span class="skill-name">Active Directory / LDAP</span><span class="skill-pct">88%</span>
+    </div>
+    <div class="skill-row" data-w="80" data-clr="var(--dark-red)">
+      <span class="skill-name">Java / BeanShell</span><span class="skill-pct">80%</span>
+    </div>
+    <div class="skill-row" data-w="75" data-clr="var(--red)">
+      <span class="skill-name">SSO / MFA / PKI</span><span class="skill-pct">75%</span>
+    </div>
+    <div class="skill-row" data-w="78" data-clr="var(--green)">
+      <span class="skill-name">SQL / MySQL / MSSQL</span><span class="skill-pct">78%</span>
+    </div>
+    <div class="skill-row" data-w="72" data-clr="var(--amber)">
+      <span class="skill-name">Linux / Windows Server</span><span class="skill-pct">72%</span>
+    </div>
+  </div>
+</section>
+
+<!-- TECH STACK -->
+<section id="techstack">
+  <p class="section-label">Tools &amp; Technologies</p>
+  <h2 class="section-title">Tech Stack</h2>
+  <div class="tech-grid">
+    <div class="tech-group">
+      <h3>Security / IAM</h3>
+      <div class="tech-items">
+        <span class="tech-item">SailPoint IIQ</span>
+        <span class="tech-item">CyberArk</span>
+        <span class="tech-item">Active Directory</span>
+        <span class="tech-item">SSO / SAML</span>
+        <span class="tech-item">MFA</span>
+        <span class="tech-item">PKI / TLS</span>
+      </div>
+    </div>
+    <div class="tech-group">
+      <h3>Languages</h3>
+      <div class="tech-items">
+        <span class="tech-item">Java / J2EE</span>
+        <span class="tech-item">BeanShell</span>
+        <span class="tech-item">Python</span>
+        <span class="tech-item">Bash</span>
+        <span class="tech-item">XML</span>
+        <span class="tech-item">HTML / CSS</span>
+        <span class="tech-item">SQL</span>
+      </div>
+    </div>
+    <div class="tech-group">
+      <h3>Databases</h3>
+      <div class="tech-items">
+        <span class="tech-item">Oracle</span>
+        <span class="tech-item">MySQL 5.0</span>
+        <span class="tech-item">MS SQL Server</span>
+        <span class="tech-item">JDBC</span>
+      </div>
+    </div>
+    <div class="tech-group">
+      <h3>Platforms / OS</h3>
+      <div class="tech-items">
+        <span class="tech-item">Windows Server 2016-2022</span>
+        <span class="tech-item">Linux</span>
+        <span class="tech-item">CentOS</span>
+        <span class="tech-item">RHEL7</span>
+      </div>
+    </div>
+    <div class="tech-group">
+      <h3>App Servers / Web</h3>
+      <div class="tech-items">
+        <span class="tech-item">Tomcat</span>
+        <span class="tech-item">JBoss</span>
+        <span class="tech-item">IIS</span>
+        <span class="tech-item">IBM WebSphere</span>
+      </div>
+    </div>
+    <div class="tech-group">
+      <h3>Tools</h3>
+      <div class="tech-items">
+        <span class="tech-item">Eclipse</span>
+        <span class="tech-item">Splunk</span>
+        <span class="tech-item">Postman</span>
+        <span class="tech-item">GitHub</span>
+        <span class="tech-item">WinSCP</span>
+        <span class="tech-item">Putty</span>
+        <span class="tech-item">Apache Directory Studio</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ACHIEVEMENTS -->
+<section id="achievements">
+  <p class="section-label">Noteworthy Credits</p>
+  <h2 class="section-title">Achievements</h2>
+  <div class="achieve-list">
+    <div class="achieve-item">
+      <div class="achieve-num">01</div>
+      <div class="achieve-text">Successfully implemented out-of-the-box (OOTB) solutions using customized workflows to address diverse project team requirements — delivering robust, production-ready IAM environments that exceeded client expectations.</div>
+    </div>
+    <div class="achieve-item">
+      <div class="achieve-num">02</div>
+      <div class="achieve-text">Delivered comprehensive end-user training and knowledge transfer sessions, ensuring seamless adoption and deep understanding of developed solutions — reducing post-go-live support tickets significantly.</div>
+    </div>
+    <div class="achieve-item">
+      <div class="achieve-num">03</div>
+      <div class="achieve-text">Onboarded a diverse portfolio of enterprise applications including AD, LDAP, Salesforce, SharePoint, Cloud Gateway, and more — establishing reliable connector pipelines across complex hybrid environments.</div>
+    </div>
+    <div class="achieve-item">
+      <div class="achieve-num">04</div>
+      <div class="achieve-text">Implemented custom MFA and Desktop Password Reset in complex enterprise environments, enhancing security posture while maintaining a seamless user experience across Windows and Unix platforms.</div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <p class="section-label">Let's Connect</p>
+  <h2 class="section-title">Enter<br>Today.</h2>
+  <p class="contact-sub">Open to new IAM opportunities, consulting engagements, and technical collaborations. Based in Dubai — available globally.</p>
+  <div class="contact-links">
+    <a href="mailto:rakeshvadnala@gmail.com" class="contact-link">✉ Email Me</a>
+    <a href="https://www.linkedin.com/in/rakeshvadnala/" target="_blank" class="contact-link">in LinkedIn</a>
+    <a href="tel:+971523176892" class="contact-link">📞 Call Me</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span>© 2026 Rakesh Vadnala · IAM Technical Consultant · Dubai, UAE</span>
+  <span class="footer-mark">THE FLOW</span>
+</footer>
+
+<script>
+  // Skill bar animation on scroll
+  const rows = document.querySelectorAll('.skill-row');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        const el = e.target;
+        el.style.setProperty('--w', el.dataset.w + '%');
+        el.style.setProperty('--clr', el.dataset.clr);
+        observer.unobserve(el);
+      }
+    });
+  }, { threshold: 0.3 });
+  rows.forEach(r => observer.observe(r));
+
+  // 3D tilt on expertise cards
+  document.querySelectorAll('.expertise-card').forEach(card => {
+    card.addEventListener('mousemove', e => {
+      const rect = card.getBoundingClientRect();
+      const x = ((e.clientX - rect.left) / rect.width - 0.5) * 7;
+      const y = ((e.clientY - rect.top) / rect.height - 0.5) * 7;
+      card.style.transform = `perspective(800px) rotateY(${x}deg) rotateX(${-y}deg) translateZ(4px)`;
+    });
+    card.addEventListener('mouseleave', () => { card.style.transform = ''; });
+  });
+
+  // Animate achievement items on scroll
+  const achieveItems = document.querySelectorAll('.achieve-item');
+  const achieveObs = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        e.target.style.animation = `fadeUp 0.5s ${i * 0.1}s ease both`;
+        achieveObs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.2 });
+  achieveItems.forEach(i => achieveObs.observe(i));
+</script>
+</body>
+</html>
